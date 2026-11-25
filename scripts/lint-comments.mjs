@@ -128,7 +128,7 @@ for (const [f, allowed] of Object.entries(baseline)) {
 }
 
 if (violations.length) {
-  console.error("Comment check failed:\n  " + violations.join("\n  "));
+  console.error(`Comment check failed:\n  ${violations.join("\n  ")}`);
   process.exit(1);
 }
 console.log(

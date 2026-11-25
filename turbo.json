@@ -15,6 +15,7 @@
       "dependsOn": ["^check-types"]
     },
     "dev": {
+      "passThroughEnv": ["PORT"],
       "cache": false,
       "persistent": true
     }
