@@ -17,10 +17,29 @@ This Turborepo includes the following packages/apps:
 ### Apps and Packages
 
 - `web`: a [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library
+- `@repo/ui`: shared [shadcn/ui](https://ui.shadcn.com/) components, Tailwind CSS theme and utilities
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+
+### UI components
+
+Add shadcn components from an app; the CLI installs them into `packages/ui`:
+
+```sh
+pnpm dlx shadcn@latest add dialog -c apps/web
+
+# every component (`add .` does not work; use --all)
+pnpm dlx shadcn@latest add --all -c apps/web
+```
+
+Always pass `-c apps/web`: the repo root has no `components.json`, so the CLI falls back to the wrong style. Generated code in `packages/ui/src/{components,hooks,lib}` is formatted by Biome but not linted, so updates with `--overwrite` stay clean.
+
+Then import them anywhere:
+
+```tsx
+import { Button } from "@repo/ui/components/button";
+```
 
 ### Utilities
 
@@ -46,7 +65,6 @@ Without global `turbo`, use your package manager:
 cd my-turborepo
 npx turbo build
 pnpm exec turbo build
-pnpm exec turbo build
 ```
 
 You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
@@ -54,15 +72,14 @@ You can build a specific package by using a [filter](https://turborepo.dev/docs/
 With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
 
 ```sh
-turbo build --filter=docs
+turbo build --filter=web
 ```
 
 Without global `turbo`:
 
 ```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+npx turbo build --filter=web
+pnpm exec turbo build --filter=web
 ```
 
 ### Develop
@@ -82,7 +99,6 @@ Without global `turbo`, use your package manager:
 cd my-turborepo
 npx turbo dev
 pnpm exec turbo dev
-pnpm exec turbo dev
 ```
 
 You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
@@ -97,7 +113,6 @@ Without global `turbo`:
 
 ```sh
 npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
 pnpm exec turbo dev --filter=web
 ```
 
@@ -123,7 +138,6 @@ Without global `turbo`, use your package manager:
 cd my-turborepo
 npx turbo login
 pnpm exec turbo login
-pnpm exec turbo login
 ```
 
 This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
@@ -140,7 +154,6 @@ Without global `turbo`:
 
 ```sh
 npx turbo link
-pnpm exec turbo link
 pnpm exec turbo link
 ```
 

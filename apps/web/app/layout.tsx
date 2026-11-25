@@ -1,14 +1,17 @@
+import "@repo/ui/globals.css";
+import { TooltipProvider } from "@repo/ui/components/tooltip";
+import { cn } from "@repo/ui/lib/utils";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
+  variable: "--font-sans",
 });
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
@@ -22,9 +25,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn(
+        "font-sans antialiased",
+        geistSans.variable,
+        geistMono.variable,
+      )}
+    >
+      <body>
+        <ThemeProvider>
+          <TooltipProvider>{children}</TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
