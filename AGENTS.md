@@ -22,3 +22,14 @@ This block is written and re-added by `turbo` before repository-scoped commands 
 3. **Don't touch unrelated code.** If a file or function is not directly part of the current task, do not modify it, even if you think it could be improved.
 
 4. **Flag uncertainty explicitly.** If you are not confident about an approach or technical detail, say so before proceeding.
+
+# Git rules
+
+1. **Pull with rebase.** Run `git pull --rebase`, so local commits replay on top of the remote and history stays linear.
+
+2. **Let the user decide on rebase conflicts.** If the rebase stops on a conflict, list the conflicted files and ask the user which path to take:
+   - **User resolves:** wait for them to finish.
+   - **Agent resolves:** keep the intent of both sides, run `pnpm check-types` and `pnpm lint`, summarise how each file was resolved, then run `git rebase --continue`.
+   - **Abort:** run `git rebase --abort`.
+
+   The pull is done only when `git status` shows no rebase in progress.
