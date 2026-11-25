@@ -26,6 +26,9 @@
   },
   "linter": {
     "enabled": true,
+    "domains": {
+      "turborepo": "recommended"
+    },
     "rules": {
       "preset": "recommended"
     }
@@ -44,5 +47,22 @@
         "organizeImports": "on"
       }
     }
-  }
+  },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
+  "overrides": [
+    {
+      "includes": [
+        "packages/ui/src/components/**",
+        "packages/ui/src/hooks/**",
+        "packages/ui/src/lib/**"
+      ],
+      "linter": {
+        "enabled": false
+      }
+    }
+  ]
 }
