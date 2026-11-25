@@ -1,3 +1,7 @@
+# Project context
+
+Before working in this repo, read `docs/CONTEXT.md` first. It is the product context for this project — an AI SaaS factory — covering the stack, hosting, milestones, competitor research, and MVP plan. Every agent should read it before making changes.
+
 <!-- BEGIN:turborepo-agent-rules -->
 
 # This is NOT the Turborepo you know

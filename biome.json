@@ -13,6 +13,7 @@
       "!!**/.next",
       "!!**/dist",
       "!!**/.turbo",
+      "!!**/.claude",
       "!!**/pnpm-lock.yaml",
       "!!**/*.svg"
     ]

@@ -8,6 +8,9 @@
       "outputs": [".next/**", "!.next/cache/**", "!.next/dev/**"]
     },
     "//#lint": {},
+    "//#lint:comments": {
+      "cache": false
+    },
     "//#lint:fix": {
       "cache": false
     },

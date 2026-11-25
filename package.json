@@ -6,6 +6,8 @@
     "dev": "turbo run dev",
     "lint": "biome check .",
     "lint:fix": "biome check --write .",
+    "lint:comments": "node scripts/lint-comments.mjs",
+    "lint:comments:update": "node scripts/lint-comments.mjs --update",
     "format": "biome format --write .",
     "check-types": "turbo run check-types"
   },
